@@ -1,0 +1,30 @@
+# SQS and SES Setup
+
+## Problem Statement:
+You work for XYZ Corporation. Your team is tasked with deploying a similar architecture multiple times for testing, development, and production purposes. The task is to implement CloudFormation for automating the setup of an SQS queue and SES configuration as outlined below.
+
+## Tasks to be Performed:
+1. **Create a FIFO SQS Queue and Test by Sending Messages:**
+   - A FIFO (First In First Out) SQS queue is created for message queuing with the requirement that messages are processed in the order they are sent.
+   - Once the FIFO queue is set up, a test message is sent to the queue to verify its functionality.
+
+2. **Register Your Email in SES and Send a Test Mail:**
+   - SES (Simple Email Service) is used for sending and receiving emails in AWS.
+   - The email address is registered with SES to allow sending emails through the service.
+   - A test email is then sent to the registered email address to ensure the SES setup is working correctly.
+
+## CloudFormation Template Outline:
+
+```yaml
+Resources:
+  MySQSQueue:
+    Type: 'AWS::SQS::Queue'
+    Properties:
+      QueueName: MyTestQueue.fifo
+      FifoQueue: 'true'
+      ContentBasedDeduplication: 'true'
+
+  MySESSenderIdentity:
+    Type: 'AWS::SES::EmailIdentity'
+    Properties:
+      EmailIdentity: 'your-email@example.com'
