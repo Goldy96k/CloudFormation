@@ -1,0 +1,49 @@
+# Case Study – Multi-Tier Architecture
+
+## 📌 Problem Statement
+XYZ Corporation needs to launch a new web-based application. The development team has prepared the code but lacks system admins to provision and configure the infrastructure. You are tasked with building a multi-tier architecture for testing and proposing a solution to streamline dev workflows and protect critical resources.
+
+---
+
+## ✅ Tasks Performed
+
+1. **Web Tier**  
+   - Launched an EC2 instance in a **public subnet**.  
+   - Configured Security Group to allow **HTTP (80)** and **SSH (22)** from the Internet.
+
+2. **Application Tier**  
+   - Launched an EC2 instance in a **private subnet**.  
+   - Configured Security Group to allow **SSH (22)** only from the **Web Tier** public subnet.
+
+3. **Database Tier**  
+   - Deployed an **Amazon RDS MySQL** instance in a **private subnet**.  
+   - Configured Security Group to allow **MySQL (3306)** only from the **Application Tier** private subnet.
+
+4. **DNS Routing**  
+   - Created a **Route 53 Hosted Zone** and added an A-record pointing to the Web Tier EC2 public IP/Elastic IP.
+
+---
+
+## 💡 Proposed Solution
+
+- **Infrastructure as Code (IaC)**: Use AWS CloudFormation (or CDK/Terraform) templates so the development team can deploy and tear down the entire stack independently.
+- **Retain Critical Resources**: Apply a **DeletionPolicy: Retain** on the RDS resource in the CloudFormation template to ensure the database is **not deleted** when the stack is destroyed.
+- **Self-Service Testing**: Package templates and parameters in a version-controlled repository. Developers can use a simple CLI or AWS Console to spin up and test environments without admin intervention.
+
+---
+
+## 🛠️ AWS Services Used
+- Amazon VPC & Subnets  
+- EC2 Instances  
+- Security Groups  
+- Amazon RDS (MySQL)  
+- Amazon Route 53  
+- AWS CloudFormation (or CDK/Terraform)
+
+---
+
+## 🎯 Outcome
+- A fully functional 3-tier architecture for development and testing.  
+- Dev team can deploy/tear down environments quickly using IaC.  
+- RDS database persists across stack deletions, protecting test data.  
+- Reduced reliance on system admins and accelerated testing cycles.
