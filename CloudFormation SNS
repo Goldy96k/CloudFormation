@@ -1,0 +1,35 @@
+# CloudFormation SNS
+
+## Problem Statement:
+You work for XYZ Corporation. Your team is asked to deploy similar architecture multiple times for testing, development, and production purposes. Implement CloudFormation to automate the deployment process and incorporate an SNS notification mechanism to track each step of the stack creation process.
+
+## Tasks To Be Performed:
+1. **Use the Template from CloudFormation Task 1**:
+    - Utilize the CloudFormation template created in the previous task. This template includes the infrastructure you need to deploy.
+   
+2. **Add Notification to the CloudFormation Stack Using SNS**:
+    - Integrate SNS (Simple Notification Service) with the CloudFormation stack. 
+    - Configure the stack to send an email notification to the user whenever there’s an update on the stack creation process (such as start, progress, or completion).
+    - Ensure that the notification is sent at every step during the stack creation process, providing real-time updates.
+
+## Steps to Complete:
+
+### 1. **Prepare CloudFormation Template**:
+   - The template should describe all the resources to be created and managed (e.g., EC2, S3, VPC, etc.).
+   - Make sure that the template includes the SNS configuration for notifications.
+
+### 2. **Integrate SNS**:
+   - Create an SNS topic.
+   - Subscribe your email to this SNS topic to receive notifications.
+   - Modify the CloudFormation template to include the SNS topic and use it as part of the notification mechanism during stack events.
+
+### 3. **CloudFormation Stack Deployment**:
+   - Deploy the CloudFormation stack with the updated template.
+   - Verify that you receive email notifications at every step of the process (stack creation, update, or deletion).
+
+## Conclusion:
+By integrating SNS with CloudFormation, you can keep track of the stack creation process and ensure timely notifications. This automated process ensures that you are always updated about the status of your infrastructure deployment in real time.
+
+---
+
+**Note**: This setup automates the deployment process for different environments (testing, development, and production) while ensuring that the user receives notifications about stack updates.
